@@ -14,7 +14,7 @@ class LineParser
 
     public function parseLine(string $line): array
     {
-        $line = trim($line);
+        $line = rtrim($line, "\r\n ");
 
         if (empty($line)) {
             return [];
@@ -70,10 +70,10 @@ class LineParser
     private function extractAndFormatDate(string $line, int $offset, int $length): string
     {
         $raw = substr($line, $offset, $length);
-        // Formato: yyyymmdd -> yyyy-mm-dd
         $year = substr($raw, 0, 4);
         $month = substr($raw, 4, 2);
         $day = substr($raw, 6, 2);
         return "{$year}-{$month}-{$day}";
     }
+
 }

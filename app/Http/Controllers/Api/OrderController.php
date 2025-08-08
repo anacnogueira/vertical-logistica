@@ -7,6 +7,7 @@ use App\Http\Requests\FileUploadRequest;
 use Illuminate\Http\JsonResponse;
 use App\Services\LineParser;
 use App\Mappers\OrderNormalizationMapper;
+use App\Http\Resources\UserOrderResource;
 
 class OrderController extends Controller
 {
@@ -25,6 +26,6 @@ class OrderController extends Controller
             }
         }
 
-        return response()->json($mapper->getNormalizedData());
+        return UserOrderResource::collection($mapper->getNormalizedData())->response();
     }
 }
