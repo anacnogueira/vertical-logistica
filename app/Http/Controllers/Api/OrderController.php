@@ -5,47 +5,19 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FileUploadRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Services\LineParser;
 
 class OrderController extends Controller
 {
-    public function normalize(FileUploadRequest $request)
+    public function normalize(FileUploadRequest $request, LineParser $parser)
     {
-        $file = $request->file('file');
-        $contents = file_get_contents($file->getRealPath());
-        $lines = explode("\n", $contents);
-        $data = array_map('trim', $lines);
+        $fileContents = file_get_contents($request->file('file')->getRealPath());
+        $lines = explode("\n", $fileContents);
 
         $normalizedData = [];
 
-        foreach ($data as $line) {
-            if (empty($line)) {
-                continue;
-            }
-
-            $userIdLength = 10;
-            $userNameLength = 45;
-            $orderIdLength = 10;
-            $productIdLength = 10;
-            $valueLength = 12;
-            $dateLength = 8;
-
-            $userId     = substr($line, 0, $userIdLength);
-            $userName   = substr($line, $userIdLength, $userNameLength);
-            $orderId    = substr($line, $userIdLength + $userNameLength, $orderIdLength);
-            $productId  = substr($line, $userIdLength + $userNameLength + $orderIdLength, $productIdLength);
-            $value      = substr($line, $userIdLength + $userNameLength + $orderIdLength + $productIdLength, $valueLength);
-            $date       = substr($line, $userIdLength + $userNameLength + $orderIdLength + $productIdLength + $valueLength, $dateLength);
-
-            $userId = (int) ltrim($userId, '0');
-            $orderId = (int) ltrim($orderId, '0');
-            $productId = (int) ltrim($productId, '0');
-            $userName = trim($userName);
-            $value = number_format((float) trim($value), 2, '.', '');
-
-            $year = substr($date, 0, 4);
-            $month = substr($date, 4, 2);
-            $day = substr($date, 6, 2);
-            $formattedDate = "{$year}-{$month}-{$day}";
+        foreach ($lines as $line) {
+            $parsedData = $parser->parseLine($line);
 
             $userKey = array_search($userId, array_column($normalizedData, 'user_id'));
 
