@@ -147,10 +147,11 @@ A API retornará uma estrutura JSON normalizada, agrupando os produtos por pedid
         ]
     }
 ]
+```
 
 ## 🧪 Executando os Testes (com Sail)
-Para garantir a qualidade e o funcionamento correto da aplicação, execute a suíte de testes unitários e de feature utilizando o Sail:
 
+Para garantir a qualidade e o funcionamento correto da aplicação, execute a suíte de testes unitários e de feature utilizando o Sail:
 
 ```
 
@@ -174,6 +175,8 @@ Para parar e remover os contêineres:
 ```
 
 ./vendor/bin/sail down
+
+```
 
 ```
 
