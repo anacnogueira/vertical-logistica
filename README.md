@@ -159,7 +159,7 @@ Para garantir a qualidade e o funcionamento correto da aplicação, execute a su
 
 ```
 
-Os testes estão localizados nas pastas tests/Unit (para LineParser e OrderNormalizationMapper). Eles usam o PHPUnit com atributos PHP 8+ (#[Test]).
+Os testes estão localizados nas pastas `tests/Unit` (para `LineParser` e `OrderNormalizationMapper`). Eles usam o PHPUnit com atributos PHP 8+ (`#[Test]`).
 
 🛑 Parando o Sail
 Para parar os contêineres Docker do Sail:
@@ -175,9 +175,5 @@ Para parar e remover os contêineres:
 ```
 
 ./vendor/bin/sail down
-
-```
-
-```
 
 ```
