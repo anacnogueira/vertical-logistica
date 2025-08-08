@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\OrderNormalizeRequest;
-use Illuminate\Support\Facades\Response;
+use App\Http\Requests\FileUploadRequest;
 use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {
-    public function normalize(OrderNormalizeRequest $request)
+    public function normalize(FileUploadRequest $request)
     {
         $file = $request->file('file');
         $contents = file_get_contents($file->getRealPath());
@@ -84,6 +83,6 @@ class OrderController extends Controller
 
         }
 
-        return Response::json($normalizedData);
+        return response()->json($normalizedData);
     }
 }
