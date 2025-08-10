@@ -18,7 +18,7 @@ Este projeto foi desenvolvido com foco nos princípios **SOLID** e nas **Object 
     -   `FileUploadRequest`: Validação da requisição HTTP.
     -   `LineParser`: Parseamento de linhas individuais de largura fixa.
     -   `OrderNormalizationMapper`: Mapeamento e agregação dos dados normalizados.
-    -   `NormalizationController`: Orquestração do fluxo da requisição.
+    -   `OrderController`: Orquestração do fluxo da requisição.
     -   `*Resource`: Formatação da resposta JSON.
 -   **Teste Unitário Robusto:** Cada componente lógico é testado isoladamente para garantir sua funcionalidade e permitir refatorações seguras.
 
@@ -26,10 +26,10 @@ Este projeto foi desenvolvido com foco nos princípios **SOLID** e nas **Object 
 
 ## 🛠️ Tecnologias Utilizadas
 
--   **PHP 8.2+**
+-   **PHP 8.4+**
 -   **Laravel 12.x**
 -   **Laravel Sail** (ambiente de desenvolvimento via Docker)
--   **PHPUnit 10+** (para testes)
+-   **PHPUnit 11+** (para testes)
 
 ---
 
